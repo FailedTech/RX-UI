@@ -30,7 +30,7 @@ get_installed_version() {
         installed_version=$("$CM_Core_PATH" -v 2>&1)
         echo "$installed_version"
     else
-        echo -e "${red}clash-meta not found${plain}"
+        echo "clash-meta not found"
     fi
 }
 
