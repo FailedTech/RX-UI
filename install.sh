@@ -27,7 +27,8 @@ get_latest_version() {
 # Function to retrieve the installed version of Clash Meta Core
 get_installed_version() {
     if [ -f "$CM_Core_PATH" ]; then
-        installed_version=$("$CM_Core_PATH" -v 2>&1)
+    # clash-meta -v | awk 'NR==1 {gsub(/^v/, "", $3); print $3}'
+        installed_version=$("$CM_Core_PATH" -v | awk 'NR==1 {print $3}')
         echo "$installed_version"
     else
         echo "clash-meta not found"
