@@ -17,16 +17,16 @@ yellow='\033[0;33m'
 
 #################### Clash Meta Session #############
 CM_Core_PATH='/usr/local/bin/clash-meta'
-Download_Latest_Version= curl -Lo clash-meta "https://github.com/MetaCubeX/Clash.Meta/releases/download/v$(get_latest_version)/clash.meta-linux-amd64-compatible-v$(get_latest_version).gz"
+download_url="https://github.com/MetaCubeX/Clash.Meta/releases/download/v$(cm_core_latest_version)/clash.meta-linux-amd64-compatible-v$(cm_core_latest_version).gz"
 
 # Function to retrieve the latest release version from GitHub API
-get_latest_version() {
+CM_Core_latest_version() {
     latest_release=$(curl -s "https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest" | grep -o '"tag_name": "v.*"' | cut -d '"' -f4 | sed 's/v//')
     echo "$latest_release"
 }
 
 # Function to retrieve the installed version of Clash Meta Core
-get_installed_version() {
+CM_Core_installed_version() {
     if [ -f "$CM_Core_PATH" ]; then
         # clash-meta -v | awk 'NR==1 {gsub(/^v/, "", $3); print $3}'
         installed_version=$("$CM_Core_PATH" -v | awk 'NR==1 {print $3}')
@@ -38,8 +38,8 @@ get_installed_version() {
 
 # Function to update or install Clash Meta Core
 update_or_install_CM_Core() {
-    latest_version=$(get_latest_version)
-    installed_version=$(get_installed_version)
+    latest_version=$(CM_Core_latest_version)
+    installed_version=$(CM_Core_installed_version)
     echo -e "$installed_version   $latest_version"
 
     if [ "$installed_version" -eq 0 ]; then
