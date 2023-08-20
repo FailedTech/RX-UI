@@ -17,47 +17,45 @@ yellow='\033[0;33m'
 
 #################### Clash Meta Session #############
 CM_Core_PATH='/usr/local/bin/clash-meta'
-download_url="https://github.com/MetaCubeX/Clash.Meta/releases/download/v$(cm_core_latest_version)/clash.meta-linux-amd64-compatible-v$(cm_core_latest_version).gz"
 
-# Function to retrieve the latest release version from GitHub API
 CM_Core_latest_version() {
     latest_release=$(curl -s "https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest" | grep -o '"tag_name": "v.*"' | cut -d '"' -f4 | sed 's/v//')
     echo "$latest_release"
 }
 
-# Function to retrieve the installed version of Clash Meta Core
 CM_Core_installed_version() {
     if [ -f "$CM_Core_PATH" ]; then
-        # clash-meta -v | awk 'NR==1 {gsub(/^v/, "", $3); print $3}'
-        installed_version=$("$CM_Core_PATH" -v | awk 'NR==1 {print $3}')
+        installed_version=$("$CM_Core_PATH" -v | awk 'NR==1 {print $3}' | sed 's/v//')
         echo "$installed_version"
     else
         echo "0"
     fi
 }
 
-# Function to update or install Clash Meta Core
-update_or_install_CM_Core() {
+CM_Core_download(){
+    curl -Lo 'clash-meta.gz' "https://github.com/MetaCubeX/Clash.Meta/releases/download/v$(CM_Core_latest_version)/clash.meta-linux-amd64-compatible-v$(CM_Core_latest_version).gz"
+    gunzip clash-meta.gz &&
+    mv clash-meta $CM_Core_PATH && chmod +x $CM_Core_PATH
+}
+
+CM_Core_setup() {
     latest_version=$(CM_Core_latest_version)
     installed_version=$(CM_Core_installed_version)
-    echo -e "$installed_version   $latest_version"
-
-    if [ "$installed_version" -eq 0 ]; then
+    echo -e "$installed_version $latest_version"
+    if [ "$installed_version" = "0" ]; then
         echo -e "${red}Clash-Meta Core not found ${plain}" &&
         echo -e "${green}Installing Clash-Meta Core ${plain}${blue}v$latest_version ${plain}" &&
-        gunzip clash-meta &&
-        mv clash-meta $CM_Core_PATH && chmod +x $CM_Core_PATH
+        CM_Core_download
     elif [ "$installed_version" = "$latest_version" ]; then
-        echo -e "${green}You already have the latest version: ${plain}${installed_version}"
-    elif [ "$installed_version" -lt "$latest_version" ]; then
-        echo -e "${green}Updating Clash-Meta Core from ${plain}${blue}${installed_version}${plain}${green} to ${plain}${blue}${latest_version}${plain}" &&
+        echo -e "${green}You already have the latest version: ${plain}${blue}v${installed_version}${plain}"
+    elif [ "$installed_version" \< "$latest_version" ]; then
+        echo -e "${green}Updating Clash-Meta Core from ${plain}${blue}v${installed_version}${plain}${green} to ${plain}${blue}v${latest_version}${plain}" &&
         rm -rf $CM_Core_PATH &&
-
+        CM_Core_download
     fi
 }
 
-# Call the function to update or install CM core
-update_or_install_CM_Core
+CM_Core_setup
 
 
 test(){
