@@ -62,13 +62,13 @@ ${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
 ${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}
 ${green}0.${plain} Exit
 ${pink}>>>>>>>>>> Core <<<<<<<<<<${plain}
-${green}1.${plain} Install   ${green}2.${plain} Update
-${green}3.${plain} Uninstall   ${green}2.${plain} Status
+${green}1.${plain} Install       ${green}2.${plain} Update
+${green}3.${plain} Uninstall     ${green}4.${plain} Status
 ${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
-${green}4.${plain} Start   ${green}5.${plain} Stop
-${green}6.${plain} Restart   ${green}7.${plain} Status
+${green}5.${plain} Start         ${green}6.${plain} Stop
+${green}7.${plain} Restart       ${green}8.${plain} Status
 ${pink}>>>>>>>>>> Config <<<<<<<<<<${plain}
-${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
+${green}9.${plain} Edit Config   ${green}10.${plain} Check Config
       "
 
     read -p "Please enter your choice [0-21]: " num
