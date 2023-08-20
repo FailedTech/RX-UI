@@ -75,5 +75,17 @@ menu() {
             menu
             ;;
     esac
+//  Edit Config
+//Check Config
+-------core------
+Install
+Update 
+Uninstall
+-------
+  ${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
+  ${green}4.${plain} Start sing-box service
+  ${green}5.${plain} Stop sing-box service
+  ${green}6.${plain} Restart sing-box service
+  ${green}7.${plain} View sing-box status
 }
 menu
