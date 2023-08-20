@@ -16,6 +16,7 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 
 #################### Clash Meta Session #############
+RX_UI_VERSION='0.0.1'
 CM_Core_PATH='/usr/local/bin/clash-meta'
 
 CM_Core_latest_version() {
@@ -55,28 +56,23 @@ CM_Core_setup() {
     fi
 }
 
-CM_Core_setup
+menu() {
+    echo -e "
+      ${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
+      ${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}"
 
+    read -p "Please enter your choice [0-21]: " num
 
-test(){
-# Set the appropriate package name based on the architecture
-architecture=$(uname -m)
-if [ "$architecture" = "x86_64" ]; then
-    package="clash.meta-linux-amd64-compatible-$latest_release.gz"
-else
-    echo "Unsupported architecture: $architecture"
-    exit 1
-fi
-
-# Download the latest release binary
-curl -LO "https://github.com/MetaCubeX/Clash.Meta/releases/download/$latest_release/$package"
-
-# Extract the downloaded .gz file
-gunzip "$package"
-
-# Make the binary executable (if needed)
-chmod +x "${package%.gz}"
-
-# Check the version of the binary
-./"${package%.gz}" -v
+    case "$num" in
+        0)
+            exit 0
+            ;;
+        1)
+            CM_Core_setup && menu
+            ;;
+        *)
+            echo "Please enter a valid option [0-21]"
+            menu
+            ;;
+    esac
 }
