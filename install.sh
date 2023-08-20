@@ -58,17 +58,17 @@ CM_Core_setup() {
 
 menu() {
     echo -e "
-      ${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
-      ${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}
-      ${green}0.${plain} Exit
-      ${pink}>>>>>>>>>> Core <<<<<<<<<<${plain}
-      ${green}1.${plain} Install   ${green}2.${plain} Update
-      ${green}3.${plain} Uninstall
-      ${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
-      ${green}4.${plain} Start   ${green}5.${plain} Stop
-      ${green}6.${plain} Restart   ${green}7.${plain} Status
-      ${pink}>>>>>>>>>> Config <<<<<<<<<<${plain}
-      ${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
+${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
+${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}
+${green}0.${plain} Exit
+${pink}>>>>>>>>>> Core <<<<<<<<<<${plain}
+${green}1.${plain} Install   ${green}2.${plain} Update
+${green}3.${plain} Uninstall
+${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
+${green}4.${plain} Start   ${green}5.${plain} Stop
+${green}6.${plain} Restart   ${green}7.${plain} Status
+${pink}>>>>>>>>>> Config <<<<<<<<<<${plain}
+${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
       "
 
     read -p "Please enter your choice [0-21]: " num
