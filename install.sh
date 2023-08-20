@@ -59,15 +59,15 @@ CM_Core_setup() {
 menu() {
     echo -e "
 ${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
-${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}
+${pink}>>>>>>>>>>   Exit  <<<<<<<<<<${plain}
 ${green}0.${plain} Exit
-${pink}>>>>>>>>>> Core <<<<<<<<<<${plain}
+${pink}>>>>>>>>>>   Core  <<<<<<<<<<${plain}
 ${green}1.${plain} Install       ${green}2.${plain} Update
 ${green}3.${plain} Uninstall     ${green}4.${plain} Status
 ${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
 ${green}5.${plain} Start         ${green}6.${plain} Stop
 ${green}7.${plain} Restart       ${green}8.${plain} Status
-${pink}>>>>>>>>>> Config <<<<<<<<<<${plain}
+${pink}>>>>>>>>>>  Config  <<<<<<<<<<${plain}
 ${green}9.${plain} Edit Config   ${green}10.${plain} Check Config
       "
 
