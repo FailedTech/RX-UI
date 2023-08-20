@@ -63,7 +63,7 @@ ${pink}>>>>>>>>>> Exit <<<<<<<<<<${plain}
 ${green}0.${plain} Exit
 ${pink}>>>>>>>>>> Core <<<<<<<<<<${plain}
 ${green}1.${plain} Install   ${green}2.${plain} Update
-${green}3.${plain} Uninstall
+${green}3.${plain} Uninstall   ${green}2.${plain} Status
 ${pink}>>>>>>>>>> Service <<<<<<<<<<${plain}
 ${green}4.${plain} Start   ${green}5.${plain} Stop
 ${green}6.${plain} Restart   ${green}7.${plain} Status
