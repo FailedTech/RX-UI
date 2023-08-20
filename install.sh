@@ -76,3 +76,4 @@ menu() {
             ;;
     esac
 }
+menu
