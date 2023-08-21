@@ -17,6 +17,7 @@ yellow='\033[0;33m'
 
 #################### Clash Meta Session #############
 RX_UI_VERSION='0.0.1'
+SCRIPT_PATH='/usr/local/sbin/RX-UI'
 CM_Core_PATH='/usr/local/bin/clash-meta'
 CM_SERVICE_PATH='/etc/systemd/system/clash-meta.service'
 CM_DOWNLOAD_PATH='/usr/local/Clash-Meta/Download/'
@@ -93,14 +94,14 @@ ExecStartPre=/usr/bin/sleep 1s
 ExecStart=/usr/local/bin/clash-meta -d /usr/local/Clash-Meta/Config
 
 [Install]
-WantedBy=multi-user.target" | sudo tee /etc/systemd/system/clash-meta.service
+WantedBy=multi-user.target" | sudo tee ${CM_SERVICE_PATH}
 }
 
 CM_Service_install(){
     if [[ -f "$CM_SERVICE_PATH" ]]; then
         CM_Service_default
     else
-        sudo touch /etc/systemd/system/clash-meta.service
+        sudo touch ${CM_SERVICE_PATH}
         CM_Service_default
     fi
 }
@@ -124,7 +125,32 @@ CM_Service_status(){
 }
 
 CM_Config_default(){
-    echo ""
+    echo -e "
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: debug
+ipv6: true
+external-controller: 0.0.0.0:9090
+dns:
+  enable: true
+  ipv6: true
+  nameserver:
+    - '8.8.8.8'
+    - '1.1.1.1'
+proxies:
+  [{'name':'proxyname','type':'vless','server':'yourserver','port':yourport,'uuid':'youruuid','network':'tcp'}]
+proxy-groups:
+  [{'name':'AUTO','type':'load-balance','proxies':['proxyname'],
+  'url':'https://instagram.com','interval':100,'strategy':'consistent-hashing'}]
+rules:
+  - MATCH,AUTO
+  - Match,Mannual
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+" | sudo tee ${CM_CONFIG_PATH}config.yaml
 }
 
 CM_Config_install(){
@@ -184,7 +210,7 @@ ${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
             ;;
         4)
             CM_Service_start
-            menu
+            read && menu
             ;;
         5)
             CM_Service_stop
