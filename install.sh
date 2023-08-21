@@ -25,6 +25,7 @@ CM_CONFIG_PATH='/usr/local/Clash-Meta/Config/'
 
 Script_install() {
     if [[ ! -f "${SCRIPT_PATH}" ]]; then
+        echo -e "${green}Installing RX-UI ${plain}"
         wget --no-check-certificate -O ${SCRIPT_PATH} "https://raw.githubusercontent.com/FailedTech/RX-UI/main/install.sh"
         chmod +x ${SCRIPT_PATH}
     fi
