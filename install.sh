@@ -124,7 +124,7 @@ CM_Service_status(){
 }
 
 CM_Config_default(){
-
+    echo ""
 }
 
 CM_Config_install(){
