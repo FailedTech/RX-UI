@@ -28,6 +28,7 @@ Script_install() {
         echo -e "${green}Installing RX-UI ${plain}"
         wget --no-check-certificate -O ${SCRIPT_PATH} "https://raw.githubusercontent.com/FailedTech/RX-UI/main/install.sh"
         chmod +x ${SCRIPT_PATH}
+        echo -e "${green}RX-UI installed successfully ${plain}"
     fi
 }
 
