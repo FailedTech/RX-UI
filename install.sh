@@ -145,6 +145,7 @@ CM_Config_check(){
 }
 
 menu() {
+    clear &&
     echo -e "
 ${green}RX-UI-v${RX_UI_VERSION} Management Script${plain}
 ${pink}>>>>>>>>>>   Exit  <<<<<<<<<<${plain}
@@ -166,7 +167,9 @@ ${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
             exit 0
             ;;
         1)
-            CM_Directory_setup && CM_Core_install && menu
+            clear && CM_Directory_setup && CM_Core_install
+            read
+            menu
             ;;
         2)
             CM_Core_uninstall && menu
