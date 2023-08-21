@@ -57,7 +57,6 @@ CM_Core_download(){
 CM_Core_install() {
     latest_version=$(CM_Core_latest_version)
     installed_version=$(CM_Core_installed_version)
-    echo -e "$installed_version $latest_version"
     if [ "$installed_version" = "0" ]; then
         echo -e "${red}Clash-Meta Core not found ${plain}" &&
         echo -e "${green}Installing Clash-Meta Core ${plain}${blue}v$latest_version ${plain}" &&
