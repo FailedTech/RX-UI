@@ -52,6 +52,7 @@ CM_Core_download(){
     curl -Lo ${CM_DOWNLOAD_PATH}clash-meta.gz "https://github.com/MetaCubeX/Clash.Meta/releases/download/v$(CM_Core_latest_version)/clash.meta-linux-amd64-compatible-v$(CM_Core_latest_version).gz"
     gunzip ${CM_DOWNLOAD_PATH}clash-meta.gz &&
     mv ${CM_DOWNLOAD_PATH}clash-meta $CM_Core_PATH && chmod +x $CM_Core_PATH
+    echo -e "${green}clash-meta core successfully installed ${plain}"
 }
 
 CM_Core_install() {
