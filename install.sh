@@ -160,27 +160,34 @@ ${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
       "
 
     read -p "Please enter your choice [0-21]: " num
+    clear
 
     case "$num" in
         0)
             exit 0
             ;;
         1)
-            clear && CM_Directory_setup && CM_Core_install
+            CM_Directory_setup
+            CM_Core_install
             read
             menu
             ;;
         2)
-            CM_Core_uninstall && menu
+            CM_Core_uninstall
+            menu
             ;;
         3)
-            CM_Core_status && menu
+            CM_Core_status
+            read
+            menu
             ;;
         4)
-            CM_Service_start && menu
+            CM_Service_start
+            menu
             ;;
         5)
-            CM_Service_stop && menu
+            CM_Service_stop
+            menu
             ;;
         6)
             CM_Service_restart && menu
