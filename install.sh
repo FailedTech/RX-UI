@@ -23,6 +23,13 @@ CM_SERVICE_PATH='/etc/systemd/system/clash-meta.service'
 CM_DOWNLOAD_PATH='/usr/local/Clash-Meta/Download/'
 CM_CONFIG_PATH='/usr/local/Clash-Meta/Config/'
 
+Script_install() {
+    if [[ ! -f "${SCRIPT_PATH}" ]]; then
+        wget --no-check-certificate -O ${SCRIPT_PATH} "https://raw.githubusercontent.com/FailedTech/RX-UI/main/install.sh"
+        chmod +x ${SCRIPT_PATH}
+    fi
+}
+
 CM_Directory_setup(){
     if [[ -d "/usr/local/Clash-Meta" ]]; then
         (
@@ -240,4 +247,6 @@ ${green}8.${plain} Edit Config   ${green}9.${plain} Check Config
             ;;
     esac
 }
+
+Script_install
 menu
